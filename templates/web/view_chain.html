@@ -1,0 +1,76 @@
+{% extends 'layout/layout.html' %}
+{% block content %}
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      
+      th, td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #ddd;
+      }
+      
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      
+      @media only screen and (max-width: 600px) {
+        th, td {
+          display: block;
+          width: 100%;
+          text-align: left;
+          border: none;
+        }
+        
+        tr {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          align-items: center;
+          border: none;
+        }
+        
+        td select {
+          width: 100%;
+          padding: 8px;
+          margin-top: 4px;
+          border: none;
+          background-color: #fff;
+          cursor: pointer;
+        }
+      }
+</style>
+
+<table>
+  <tr>
+    <th>Leader ID</th>
+    <th>Total Votes</th>
+    <th>Status</th>
+  </tr>
+  {% for block in blocks %}
+  <tr>
+    <td>{{ block.leadername }}</td>
+    <td>{{ block.total_votes }}</td>
+    <td>
+        <form>
+            <select>
+                <option>Pending</option>
+                <option>Success</option>
+                
+            </select>
+        </form>
+    </td>
+  </tr>
+
+  {% endfor %}
+</table>
+{% if winner %}
+<h2>Winner: {{ winner.leadername }}</h2>
+{% else %}
+<p>No votes recorded yet.</p>
+{% endif %}
+
+{% endblock content %}

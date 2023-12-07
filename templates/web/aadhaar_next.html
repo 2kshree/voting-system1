@@ -1,0 +1,99 @@
+{% extends 'layout/layout.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}
+        Aadhaar
+        {% endblock title %}
+    </title>
+    <style>
+        body{
+            background-image: url('static/block.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .demo{
+           /*background-image: url(https://www.techopedia.com/wp-content/uploads/2023/07/blockchain_interconnected_blocks_02-1024x512.png);
+           background-image: url('static/block.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+           
+            height: 100vh;
+            color: white;*/
+            
+            border: none;
+            margin-top: 150px;
+            margin-left: 300px;
+            text-align: center;
+        color: rgb(255, 255, 255);
+        width: 50%;
+        height: 240px !important;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.1);
+            
+        }
+        
+        marquee{
+            font-size: 20px;
+            font-style: italic;
+            color: rgb(249, 249, 249);
+            margin-top: 10px;
+        }
+        .form{
+            margin-top: 10%;
+        }
+        label{
+            margin-top: 8%;
+            font-size: 20px;
+            color: aliceblue;
+        }
+
+        
+    </style>
+</head>
+<body>
+
+    <!-- Form for entering Aadhaar number -->
+    
+  
+
+    {% if message %}
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="alert alert-danger text-center" role="alert" style="width:30%;">
+            {{ message }}
+        </div> 
+        </div>
+    {% endif %}
+
+    {% if data %}
+        <!-- Form for entering OTP -->
+        <div class="demo">
+        <form action="{% url 'verify_otp' %}" method="POST">
+            {% csrf_token %}
+            <marquee behavior="" direction="">Secret key Generated with Your Mail</marquee>
+            <label for="otp">Enter Your OTP : </label>
+            <input type="text" id="otp" name="otp" style="margin-left: 15px;"><br>
+            <button type="submit" style="margin-top:25px;width:100px">Submit</button>
+            
+        </form>
+  </div>
+        {% else %}
+        <div class="demo">
+        <form action="{% url 'aadhaar1' %}" method="POST" class="form">
+            {% csrf_token %}
+            
+            <marquee behavior="" direction="">Enter your Aadhaar number. Wait for the Secret key to be generated.</marquee>
+            <label for="number">Enter Your Aadhaar Number</label>
+            <input type="number" id="number" name="number" style="margin-left: 15px;"> <br>
+            <button type="submit" style="margin-top:25px;width:100px">Submit</button>
+        
+        </form>
+    </div>
+    {% endif %}
+
+</body>
+</html>
+{% endblock content %}

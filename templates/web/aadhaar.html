@@ -1,0 +1,82 @@
+{% extends 'layout/layout.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       body{
+        /*background-image: url(https://t4.ftcdn.net/jpg/05/50/34/75/360_F_550347527_a4E35eFyM3s5KhwaUMoGmqgJQf9Ub48q.jpg);*/
+        background-image: url('static/aadhaar1.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100vh;
+        color: white;
+       }
+       .demo{
+        margin-top: 15%;
+        margin-right: 55%;
+        border: 2px solid rgb(0, 110, 255);
+        border-radius: 12px;
+        padding: 5px;
+        width: 40%;
+        text-align: center;
+       }
+       .color{
+       color: rgb(192, 192, 247);
+       }
+       .text{
+        font-size: 32px;
+        background: -webkit-linear-gradient(rgb(255, 255, 255), #333);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+       }
+       .data{
+        text-decoration: none;
+        background: linear-gradient(45deg, #acffec, #6e7f91);
+       }
+       .but{
+        margin-top: 2%;
+       }
+       .form{
+        width: 100%;
+       }
+       @media (max-width: 600px) {
+        .demo {
+            width: 95%; /* Adjusted width for smaller screens */
+            margin-right: 0;
+        }
+   }
+
+    </style>
+</head>
+<body>
+
+        {% if message %}
+            <p>{{ message }}</p>
+            {% else %}
+            <center>
+            <div class="demo">
+                <marquee behavior="" direction="" class="color">Enter Your Aadhaar Number Give the Vote For Us</marquee>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="form">{{ data }}</div>
+                
+                 
+                <button class="but">Submit</button>
+                
+
+                <div class="text"><label for="">If Already Enroll The Aadhaar Number</label></div>
+                <div><a href="{% url 'aadhaar1' %}" class="data">&nbsp;&nbsp;&nbsp;click Here !!!&nbsp;&nbsp;&nbsp;</a></div>
+                <!-- <label for="">If already Enroll the Aadhaar Number<a href="{% url 'aadhaar1' %}">click Here !!!</a></label> -->
+            </form>
+        </div>
+    </center>
+        {% endif %}
+        
+
+</body>
+</html>
+{% endblock content %}

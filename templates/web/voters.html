@@ -1,0 +1,90 @@
+{% extends 'layout/layout.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}
+        Election Team
+        {% endblock title %}
+    </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .demo {
+            padding: 1%;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #32a1a1;
+            color: white;
+        }
+
+        @media screen and (max-width: 600px) {
+            table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% if message %}
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="alert alert-danger text-center" role="alert" style="width:30%;">
+            {{ message }}
+        </div> 
+        </div>
+    {% endif %}
+    <h1>Election Team List</h1>
+    <!-- <a href="{% url 'voterlist' %}">Register the candidate</a> -->
+    <center>
+        <table>
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Leader Name</th>
+                    <th>Foundation Name</th>
+                    <th>Code</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for voter in voters_list %}
+                    <tr class="demo">
+                        <td class="demo"><a href="{% url 'voter_details' voter.code %}"><img src="{{ voter.image.url }}" alt="{{ voter.foundation_name }}" width="70"></a></td>
+                        <td class="demo">{{ voter.leadername }}</td>
+                        <td class="demo">{{ voter.foundation_name }}</td>
+                        <td class="demo">{{ voter.code }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </center>
+</body>
+</html>
+
+{% endblock content %}

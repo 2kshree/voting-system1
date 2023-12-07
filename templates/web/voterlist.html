@@ -1,0 +1,89 @@
+{% extends 'layout/layout.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}
+        Election List
+        {% endblock title %}
+    </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        #container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            font-size: 16px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        @media screen and (max-width: 600px) {
+            input {
+                padding: 5px;
+                margin-bottom: 8px;
+            }
+
+            button {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    {% if message %}
+    <p>{{ message }}</p>
+    {% endif %}
+
+    <div id="container">
+        <h1>Election Team List</h1>
+        <div><a href="{% url 'view_chain' %}">Total Votes</a></div>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="id_image">Foundation Image</label>
+            {{ form.image }}<br>
+            <label for="id_leadername">Name</label>{{ form.leadername }}<br>
+            <label for="id_foundation_name">Foundation Name</label>{{ form.foundation_name }}<br>
+            <label for="id_code">Code Number</label>{{ form.code }}<br>
+            <button type="submit">Upload</button>
+        </form>
+    </div>
+
+</body>
+</html>
+
+{% endblock content %}

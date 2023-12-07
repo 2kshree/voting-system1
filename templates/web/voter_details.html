@@ -1,0 +1,100 @@
+{% extends 'layout/layout.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voter Details</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        #container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        button {
+            font-size: 16px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #message {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        @media screen and (max-width: 600px) {
+            p {
+                font-size: 16px;
+            }
+
+            button {
+                font-size: 14px;
+            }
+
+            #message {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    {% if message %}
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="alert alert-danger text-center" role="alert" style="width:30%;">
+            {{ message }}
+        </div> 
+        </div>
+    {% else %}
+    <div id="container">
+        <center>
+            <img src="{{ voter.image.url }}" alt="{{ voter.foundation_name }}" width="40%">
+            <p><strong>Leader Name:</strong> {{ voter.leadername }}</p>
+            <p><strong>Foundation Name:</strong> {{ voter.foundation_name }}</p>
+            <button id="submitBtn">Submit</button>
+            <p id="message"></p>
+        </center>
+    </div>
+    {% endif %}
+
+    <script>
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            var message = 'Your Voter For ' + '{{ voter.foundation_name }}';
+            var url = '{{ voter.code }}';
+            document.getElementById('message').innerText = message;
+            window.location.href = `/mine_block/${url}`;
+        });
+    </script>
+</body>
+</html>
+
+
+
+{% endblock content %}
+
+
+

@@ -1,0 +1,72 @@
+{% extends 'layout/layout.html' %}
+{%block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .body{
+            
+            /*background-image: url('static/vj.jpg');*/
+            background-image: url(https://i0.wp.com/compass.rauias.com/wp-content/uploads/2023/08/indian-parliament-64eeedd4361f4.webp);
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 90.9vh;
+            
+        }
+        @media only screen and (max-width: 600px) {
+            .body {
+                /* Adjust styling for small screens */
+                height: 100vh;
+                width: 50vh;
+            }
+        }
+        #data{
+            opacity: 0.1;
+        }
+        #data:hover{
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="body">
+        <center>
+    <h1>Online Voting System Using Block-Chain</h1></center>
+    {% if message %}
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="alert alert-danger text-center" role="alert" style="width:30%;">
+            {{ message }}
+        </div> 
+        </div>
+    
+{% endif %}
+
+<div class="card-group mx-3"style='width: 20%; margin-top:9%;'id="data">
+    <div class="card">
+      <img src="static/aadhaar2.jpg" class="card-img-top" alt="Wait" >
+      <div class="card-body">
+        <h5 class="card-title"><a href="{% url 'aadhaar' %}" style="text-decoration: none;">Register Your Aadhaar</a></h5>
+        <p class="card-text">Very Carefull to Enter Your Aadhaar Number</p>
+      </div>
+    </div>
+
+</div>
+
+
+<div class="card-group"style='width: 20%;margin-top:-23.5%; margin-left:79%;'id="data">
+    <div class="card">
+      <img src="static/vote.jpg" class="card-img-top" alt="Wait" >
+      <div class="card-body">
+        <h5 class="card-title">Vote For Us</h5>
+        <p class="card-text">Register Your Aadhaar Number First & Vote for Us</p>
+      </div>
+    </div>
+
+</div>
+</div>
+</body>
+</html>
+{%endblock content%}
