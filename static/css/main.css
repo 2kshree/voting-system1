@@ -1,0 +1,15 @@
+body{
+    background-image: url();
+    /* background-repeat: no-repeat; */
+    /* background-size: cover; */
+    color: rgb(0, 0, 0);
+    -webkit-touch-callout: none; /* Disable selection on iOS */
+        -webkit-user-select: none; /* Disable selection on webkit browsers */
+        -moz-user-select: none; /* Disable selection on Mozilla Firefox */
+        -ms-user-select: none; /* Disable selection on Microsoft Edge */
+        user-select: none;
+    
+}   
+body::oncontextmenu {
+    return false;
+}
